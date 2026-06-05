@@ -1,0 +1,67 @@
+name: Zoom Bot Schedule
+
+on:
+  schedule:
+    # Run Monday to Saturday at 9:00 AM IST
+    # 9:00 AM IST = 3:30 AM UTC
+    - cron: '30 3 * * 1-6'
+  workflow_dispatch:
+    inputs:
+      duration:
+        description: 'Duration in hours (default: 4 for 9AM-1PM)'
+        required: false
+        default: '4'
+
+jobs:
+  zoom-bot:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Install Playwright Chromium
+        run: |
+          npx playwright install chromium
+          sudo apt-get update
+          sudo apt-get install -y \
+            libxshmfence1 \
+            libglib2.0-0 \
+            libnss3 \
+            libnspr4 \
+            libatk1.0-0 \
+            libatk-bridge2.0-0 \
+            libcups2 \
+            libdrm2 \
+            libdbus-1-3 \
+            libxkbcommon0 \
+            libxcomposite1 \
+            libxdamage1 \
+            libxfixes3 \
+            libxrandr2 \
+            libgbm1 \
+            libpango-1.0-0 \
+            libcairo2 \
+            libasound2t64
+
+      - name: Run Zoom Bot
+        env:
+          STAY_DURATION: ${{ github.event.inputs.duration || '4' }}
+        run: node zoomBot-github.js
+
+      - name: Upload screenshots and artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zoom-bot-artifacts
+          path: bot_screenshots/
+          retention-days: 7
