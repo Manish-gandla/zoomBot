@@ -1,0 +1,12 @@
+{
+  "name": "zoom-bot",
+  "version": "1.0.0",
+  "description": "Zoom meeting bot - manual join, auto-stay",
+  "main": "zoomBot.js",
+  "scripts": {
+    "start": "node zoomBot.js"
+  },
+  "dependencies": {
+    "playwright": "^1.45.0"
+  }
+}
