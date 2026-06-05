@@ -7,7 +7,7 @@ const readline = require('readline');
 // CONFIGURATION
 // ============================================================
 const MEETING_URL = process.env.MEETING_URL || 'https://bytexl-in.zoom.us/w/87508297509?tk=Jwab1SSwtXE_pvbtNcHafwa2tqnfgysJfPZP7pS8Cz8.DQkAAAAUX-anJRZYb09MRWd2WFRDU0FwY2ZLY1ZKT2ZBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&pwd=wloDbtKaR91Ui2VqKxn9yqIm92pw8c.1';
-const BOT_NAME = process.env.BOT_NAME || 'Rahul Sharma';
+const BOT_NAME = process.env.BOT_NAME || '24BFA33L10 MANISH KUMAR';
 const STAY_DURATION = parseInt(process.env.STAY_DURATION || '14400'); // Default 4 hours (9AM to 1PM)
 const SCREENSHOT_DIR = process.env.SCREENSHOT_DIR || 'artifacts';
 
